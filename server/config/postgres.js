@@ -20,11 +20,5 @@ module.exports = (app) => {
 
   });
 
-
-
-// pool.query('SELECT * from items', (err, res) => {
-//     console.log(err, res.rows)
-//     pool.end()
-//   })
   
 };

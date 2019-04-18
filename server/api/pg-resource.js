@@ -72,9 +72,18 @@ module.exports = postgres => {
        */
 
       const findUserQuery = {
-        text: '', // @TODO: Basic queries
+        text: 'SELECT * FROM users WHERE id=$1', // @TODO: Basic queries
         values: [id]
       };
+      try{
+          const user = await postgres.query(findUserQuery);
+          if(!user) throw 'user was not found';
+          console.log(user.rows);
+          return user.rows[0];      
+      }catch(e){
+        throw 'user not found';
+    
+      }
 
       /**
        *  Refactor the following code using the error handling logic described above.
@@ -130,7 +139,7 @@ module.exports = postgres => {
       return items.rows;
     },
     async getTags() {
-      const tags = await postgres.query(/* @TODO: Basic queries */);
+      const tags = await postgres.query('SELECT * FROM tags');
       return tags.rows;
     },
     async getTagsForItem(id) {
