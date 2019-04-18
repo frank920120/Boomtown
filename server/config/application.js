@@ -46,6 +46,11 @@ module.exports = (app) => {
    */
 
   app.use(cookieParser());
+  app.set('PORT',PORT);
+  app.set('PG_HOST', process.env.PG_HOST || 'localhost');
+  app.set('PG_USER', process.env.PG_USER|| 'boomtown');
+  app.set('PG_PASSWORD', process.env.PG_PASSWORD|| 'boomtown');
+  app.set('PG_DB', process.env.PG_DB||'boomtown');
 
   if (process.env.NODE_ENV === 'production') {
     const root = path.resolve(__dirname, '../public');
