@@ -24,21 +24,21 @@ module.exports = gql`
   }
 
   type User {
-    id:ID
-    email:String
-    fullname:String
+    id:ID!
+    email:String!
+    fullname:String!
     bio:String
     items:[Item]
     borrowed:[Item]
   }
 
   type Tag {
-    id:ID,
-    title:String
+    id:ID!,
+    title:String!
   }
 
   type File {
-    id:ID,
+    id:ID!,
     filename:String!
     minetype:String!
     encoding:String!

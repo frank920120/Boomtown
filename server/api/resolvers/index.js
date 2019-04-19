@@ -27,40 +27,34 @@ module.exports = app => {
 
     Query: {
       viewer() {
-        /**
-         * @TODO: Authentication - Server
-         *
-         *  If you're here, you have successfully completed the sign-up and login resolvers
-         *  and have added the JWT from the HTTP cookie to your resolver's context.
-         *
-         *  The viewer is what we're calling the current user signed into your application.
-         *  When the user signed in with their username and password, an JWT was created with
-         *  the user's information cryptographically encoded inside.
-         *
-         *  To provide information about the user's session to the app, decode and return
-         *  the token's stored user here. If there is no token, the user has signed out,
-         *  in which case you'll return null
-         */
+
         return null;
       },
       async user(parent, { id }, { pgResource }, info) {
   
         try {
           const user = await pgResource.getUserById(id);
-          console.log(user);
+
+          if(user==null){
+            throw 'user was not found!';
+          }
           return user;
         } catch (e) {
           throw new ApolloError(e);
         }
       },
-      async items() {
-        // @TODO: Replace this mock return statement with the correct items from Postgres
-        return []
+      async items(parent,{filter},{pgResource},info) {
+       
+          console.log(filter);
+        try {
+          const item = await pgResource.getItems(filter);
+          return item;
+        } catch (e) {
+          throw new ApolloError(e);
+        }
         // -------------------------------
       },
       async tags(parent,args,{ pgResource },info) {
-        console.log(pgResource);
-        // @TODO: Replace this mock return statement with the correct tags from Postgres
         try {
           const tag = await pgResource.getTags();
           console.log(tag)
@@ -73,28 +67,28 @@ module.exports = app => {
     },
 
     User: {
-      /**
-       *  @TODO: Advanced resolvers
-       *
-       *  The User GraphQL type has two fields that are not present in the
-       *  user table in Postgres: items and borrowed.
-       *
-       *  According to our GraphQL schema, these fields should return a list of
-       *  Items (GraphQL type) the user has lent (items) and borrowed (borrowed).
-       *
-       */
-      // @TODO: Uncomment these lines after you define the User type with these fields
-      // items() {
-      //   // @TODO: Replace this mock return statement with the correct items from Postgres
-      //   return []
-      //   // -------------------------------
-      // },
-      // borrowed() {
-      //   // @TODO: Replace this mock return statement with the correct items from Postgres
-      //   return []
-      //   // -------------------------------
-      // }
-      // -------------------------------
+   
+      async items({id},args,{pgResource}) {
+      
+        try {
+          const userItem =  await pgResource.getItemsForUser(id);
+          return userItem;
+        } catch (e) {
+          throw new ApolloError(e);
+        }
+       
+      },  
+     async borrowed({id},args,{pgResource}) {
+    
+        try {
+          const borrowitem =  await pgResource.getBorrowedItemsForUser(id);
+          return borrowitem;
+        } catch (e) {
+          throw new ApolloError(e);
+        }
+      
+      }
+      
     },
 
     Item: {
@@ -109,21 +103,26 @@ module.exports = app => {
        *
        */
       // @TODO: Uncomment these lines after you define the Item type with these fields
-      // async itemowner() {
-      //   // @TODO: Replace this mock return statement with the correct user from Postgres
-      //   return {
-      //     id: 29,
-      //     fullname: "Mock user",
-      //     email: "mock@user.com",
-      //     bio: "Mock user. Remove me."
-      //   }
-      //   // -------------------------------
-      // },
-      // async tags() {
-      //   // @TODO: Replace this mock return statement with the correct tags for the queried Item from Postgres
-      //   return []
-      //   // -------------------------------
-      // },
+      async itemowner() {
+        // @TODO: Replace this mock return statement with the correct user from Postgres
+        return {
+          id: 29,
+          fullname: "Mock user",
+          email: "mock@user.com",
+          bio: "Mock user. Remove me."
+        }
+        // -------------------------------
+      },
+      async tags({id},args,{pgResource}) {
+        
+        try {
+          const itemtags =  await pgResource.getTagsForItem(id);
+          return itemtags;
+        } catch (e) {
+          throw new ApolloError(e);
+        }
+        // -------------------------------
+      },
       // async borrower() {
       //   /**
       //    * @TODO: Replace this mock return statement with the correct user from Postgres
