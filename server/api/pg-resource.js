@@ -53,7 +53,7 @@ module.exports = postgres => {
     async getUserById(id) {
 
       const findUserQuery = {
-        text: 'SELECT * FROM users WHERE id=$1', // @TODO: Basic queries
+        text: 'SELECT * FROM users WHERE id=$1', 
         values: [id]
       };
       try {
