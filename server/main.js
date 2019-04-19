@@ -12,39 +12,23 @@ const postgres = initDB(app);
 let pgResource = require('./api/pg-resource');
 pgResource = pgResource(postgres);
 
- const initApollo = require('./config/apollo')
- initApollo({ app, pgResource })
+const initApollo = require('./config/apollo')
+initApollo({ app, pgResource })
 postgres.on('error', (err, client) => {
-  
+
   console.error('Unexpected error on idle postgres client', err);
   process.exit(-1)
 
 });
 
-
-// postgres.connect((err, client, done) => {
-//   (async (client) => {
-//     try {
-//   // const res = pgResource.getUserById(1);
-//       const text = "SELECT * FROM items";
- 
-//     const res= await client.query(text);
-//     //  console.log(res.rows);
-//     } finally {
-//       client.release()
-//     }
-//   })(client).catch(e => console.log(e.stack))
-//  })
-
-
 const server = app.listen(PORT, () => {
   console.log(`>> ${chalk.blue('Express running:')} http://localhost:${PORT}`);
 
 
-      console.log(
-        `>> ${chalk.magenta('GraphQL playground:')} http://localhost:${PORT}/graphql`
-      );
-  
+  console.log(
+    `>> ${chalk.magenta('GraphQL playground:')} http://localhost:${PORT}/graphql`
+  );
+
 });
 
 server.on('error', err => {

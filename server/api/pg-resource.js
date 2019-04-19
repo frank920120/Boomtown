@@ -9,11 +9,11 @@ function tagsQueryString(tags, itemid, result) {
   return length === 0
     ? `${result};`
     : tags.shift() &&
-        tagsQueryString(
-          tags,
-          itemid,
-          `${result}($${tags.length + 1}, ${itemid})${length === 1 ? '' : ','}`
-        );
+    tagsQueryString(
+      tags,
+      itemid,
+      `${result}($${tags.length + 1}, ${itemid})${length === 1 ? '' : ','}`
+    );
 }
 
 module.exports = postgres => {
@@ -51,19 +51,19 @@ module.exports = postgres => {
       }
     },
     async getUserById(id) {
-     
+
       const findUserQuery = {
         text: 'SELECT * FROM users WHERE id=$1', // @TODO: Basic queries
         values: [id]
       };
-      try{
-          const user = await postgres.query(findUserQuery);
-          if(!user) throw 'user was not found';
-          console.log(user.rows);
-          return user.rows[0];      
-      }catch(e){
+      try {
+        const user = await postgres.query(findUserQuery);
+        if (!user) throw 'user was not found';
+        console.log(user.rows);
+        return user.rows[0];
+      } catch (e) {
         throw 'user not found';
-    
+
       }
 
       /**
@@ -82,7 +82,7 @@ module.exports = postgres => {
     async getItems(idToOmit) {
 
       const items = await postgres.query({
-  
+
         text: 'select * from items where itemowner!=$1',
         values: idToOmit ? [idToOmit] : []
       });
@@ -90,7 +90,7 @@ module.exports = postgres => {
     },
     async getItemsForUser(id) {
       const items = await postgres.query({
-      
+
         text: `select * from items where itemowner = $1;`,
         values: [id]
       });
@@ -98,25 +98,25 @@ module.exports = postgres => {
     },
     async getBorrowedItemsForUser(id) {
       const items = await postgres.query({
-     
+
         text: `select * from items where borrower=$1`,
         values: [id]
       });
       return items.rows;
     },
     async getTags() {
-      try{
-      const tags = await postgres.query('SELECT * FROM tags');
-      return tags.rows;
-      }catch(err){
+      try {
+        const tags = await postgres.query('SELECT * FROM tags');
+        return tags.rows;
+      } catch (err) {
 
-          throw err;
+        throw err;
 
       }
     },
     async getTagsForItem(id) {
       const tagsQuery = {
-        text: `select * from tags inner join itemtags on tags.id=itemtags.tagid where itemid = $1`, 
+        text: `select * from tags inner join itemtags on tags.id=itemtags.tagid where itemid = $1`,
         values: [id]
       };
 
@@ -125,7 +125,7 @@ module.exports = postgres => {
     },
     async getItemowner(id) {
       const itemownerQuery = {
-        text: `select * from users where id = (select itemowner from items where id = $1)`, 
+        text: `select * from users where id = (select itemowner from items where id = $1)`,
         values: [id]
       };
 
@@ -134,7 +134,7 @@ module.exports = postgres => {
     },
     async getBorrower(id) {
       const borrowerQuery = {
-        text: `select * from users where id = (select borrower from items where id = $1)`, 
+        text: `select * from users where id = (select borrower from items where id = $1)`,
         values: [id]
       };
       const borrower = await postgres.query(borrowerQuery);

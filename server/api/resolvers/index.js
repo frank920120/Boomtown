@@ -31,11 +31,11 @@ module.exports = app => {
         return null;
       },
       async user(parent, { id }, { pgResource }, info) {
-  
+
         try {
           const user = await pgResource.getUserById(id);
 
-          if(user==null){
+          if (user == null) {
             throw 'user was not found!';
           }
           return user;
@@ -43,18 +43,18 @@ module.exports = app => {
           throw new ApolloError(e);
         }
       },
-      async items(parent,{filter},{pgResource},info) {
-       
-          console.log(filter);
+      async items(parent, { filter }, { pgResource }, info) {
+
+        console.log(filter);
         try {
           const item = await pgResource.getItems(filter);
           return item;
         } catch (e) {
           throw new ApolloError(e);
         }
-      
+
       },
-      async tags(parent,args,{ pgResource },info) {
+      async tags(parent, args, { pgResource }, info) {
         try {
           const tag = await pgResource.getTags();
           console.log(tag)
@@ -67,68 +67,68 @@ module.exports = app => {
     },
 
     User: {
-   
-      async items({id},args,{pgResource}) {
-      
+
+      async items({ id }, args, { pgResource }) {
+
         try {
-          const userItem =  await pgResource.getItemsForUser(id);
+          const userItem = await pgResource.getItemsForUser(id);
           return userItem;
         } catch (e) {
           throw new ApolloError(e);
         }
-       
-      },  
-     async borrowed({id},args,{pgResource}) {
-    
+
+      },
+      async borrowed({ id }, args, { pgResource }) {
+
         try {
-          const borrowitem =  await pgResource.getBorrowedItemsForUser(id);
+          const borrowitem = await pgResource.getBorrowedItemsForUser(id);
           return borrowitem;
         } catch (e) {
           throw new ApolloError(e);
         }
-      
+
       }
-      
+
     },
 
     Item: {
-    
-      async itemowner({id},args,{pgResource}) {
-      
-        try{
-        const userLent = await pgResource.getItemowner(id);
-        console.log(userLent);
-        return userLent;
-        }catch(e){
+
+      async itemowner({ id }, args, { pgResource }) {
+
+        try {
+          const userLent = await pgResource.getItemowner(id);
+          console.log(userLent);
+          return userLent;
+        } catch (e) {
 
           throw new ApolloError(e);
 
         }
       },
-      async tags({id},args,{pgResource}) {
-        
+      async tags({ id }, args, { pgResource }) {
+
         try {
-          const itemtags =  await pgResource.getTagsForItem(id);
+          const itemtags = await pgResource.getTagsForItem(id);
           return itemtags;
         } catch (e) {
           throw new ApolloError(e);
         }
-       
+
       },
-      async borrower({id},args,{pgResource}) {
-        
-        try{
-        const userBorrow = await pgResource.getBorrower(id);
-        console.log(userBorrow);
-        return userBorrow;
-        }catch(e){
+      async borrower({ id }, args, { pgResource }) {
+
+        try {
+          const userBorrow = await pgResource.getBorrower(id);
+          console.log(userBorrow);
+          return userBorrow;
+        } catch (e) {
 
           throw new ApolloError(e);
 
         }
-        
+
       }
-    
+
     },
 
     Mutation: {
