@@ -137,7 +137,6 @@ module.exports = postgres => {
         text: `select * from users where id = (select borrower from items where id = $1)`, 
         values: [id]
       };
-
       const borrower = await postgres.query(borrowerQuery);
       return borrower.rows;
     },

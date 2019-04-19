@@ -52,7 +52,7 @@ module.exports = app => {
         } catch (e) {
           throw new ApolloError(e);
         }
-        // -------------------------------
+      
       },
       async tags(parent,args,{ pgResource },info) {
         try {
@@ -62,7 +62,7 @@ module.exports = app => {
         } catch (e) {
           throw new ApolloError(e);
         }
-        // -------------------------------
+
       }
     },
 
@@ -92,19 +92,9 @@ module.exports = app => {
     },
 
     Item: {
-      /**
-       *  @TODO: Advanced resolvers
-       *
-       *  The Item GraphQL type has two fields that are not present in the
-       *  Items table in Postgres: itemowner, tags and borrower.
-       *
-       * According to our GraphQL schema, the itemowner and borrower should return
-       * a User (GraphQL type) and tags should return a list of Tags (GraphQL type)
-       *
-       */
-      // @TODO: Uncomment these lines after you define the Item type with these fields
+    
       async itemowner({id},args,{pgResource}) {
-        console.log(id);
+      
         try{
         const userLent = await pgResource.getItemowner(id);
         console.log(userLent);
@@ -123,10 +113,10 @@ module.exports = app => {
         } catch (e) {
           throw new ApolloError(e);
         }
-        // -------------------------------
+       
       },
       async borrower({id},args,{pgResource}) {
-        console.log(id);
+        
         try{
         const userBorrow = await pgResource.getBorrower(id);
         console.log(userBorrow);
