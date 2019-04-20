@@ -45,7 +45,7 @@ module.exports = app => {
       },
       async items(parent, { filter }, { pgResource }, info) {
 
-        console.log(filter);
+
         try {
           const item = await pgResource.getItems(filter);
           return item;
@@ -57,7 +57,7 @@ module.exports = app => {
       async tags(parent, args, { pgResource }, info) {
         try {
           const tag = await pgResource.getTags();
-          console.log(tag)
+
           return tag;
         } catch (e) {
           throw new ApolloError(e);
@@ -93,11 +93,12 @@ module.exports = app => {
 
     Item: {
 
-      async itemowner({ id }, args, { pgResource }) {
-
+      async itemowner({ itemowner }, args, { pgResource }) {
+       
         try {
-          const userLent = await pgResource.getItemowner(id);
-          console.log(userLent);
+
+          const userLent = await pgResource.getUserById(itemowner);
+
           return userLent;
         } catch (e) {
 
@@ -115,12 +116,16 @@ module.exports = app => {
         }
 
       },
-      async borrower({ id }, args, { pgResource }) {
-
+      async borrower({ borrower }, args, { pgResource }) {
+        
         try {
-          const userBorrow = await pgResource.getBorrower(id);
-          console.log(userBorrow);
+          if(!borrower){
+            return null;
+          }
+          const userBorrow = await pgResource.getUserById(borrower);
+
           return userBorrow;
+
         } catch (e) {
 
           throw new ApolloError(e);

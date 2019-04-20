@@ -59,7 +59,7 @@ module.exports = postgres => {
       try {
         const user = await postgres.query(findUserQuery);
         if (!user) throw 'user was not found';
-        console.log(user.rows);
+        
         return user.rows[0];
       } catch (e) {
         throw 'user not found';
@@ -123,23 +123,23 @@ module.exports = postgres => {
       const tags = await postgres.query(tagsQuery);
       return tags.rows;
     },
-    async getItemowner(id) {
-      const itemownerQuery = {
-        text: `select * from users where id = (select itemowner from items where id = $1)`,
-        values: [id]
-      };
+    // async getItemowner(id) {
+    //   const itemownerQuery = {
+    //     text: `select * from users where id = (select itemowner from items where id = $1)`,
+    //     values: [id]
+    //   };
 
-      const itemowner = await postgres.query(itemownerQuery);
-      return itemowner.rows;
-    },
-    async getBorrower(id) {
-      const borrowerQuery = {
-        text: `select * from users where id = (select borrower from items where id = $1)`,
-        values: [id]
-      };
-      const borrower = await postgres.query(borrowerQuery);
-      return borrower.rows;
-    },
+    //   const itemowner = await postgres.query(itemownerQuery);
+    //   return itemowner.rows;
+    // },
+    // async getBorrower(id) {
+    //   const borrowerQuery = {
+    //     text: `select * from users where id = (select borrower from items where id = $1)`,
+    //     values: [id]
+    //   };
+    //   const borrower = await postgres.query(borrowerQuery);
+    //   return borrower.rows;
+    // },
     async saveNewItem({ item, user }) {
       /**
        *  @TODO: Adding a New Item
