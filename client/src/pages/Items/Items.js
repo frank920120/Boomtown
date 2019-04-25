@@ -1,14 +1,8 @@
 import React from 'react';
-
-const Items = ({ classes }) => {
-  return (
-    <div>
-      <p>
-        This is the items page located at <code>/items</code>.
-      </p>
-    </div>
-  );
+// import Gravatar from 'react-gravatar';
+import ItemsGrid from '../../components/ItemsGrid';
+const Items = ({ classes, items }) => {
+  return <ItemsGrid items={items} />;
 };
 
 export default Items;
-

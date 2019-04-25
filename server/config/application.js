@@ -4,7 +4,7 @@ const express = require('express');
 const fallback = require('express-history-api-fallback');
 const path = require('path');
 
-module.exports = (app) => {
+module.exports = app => {
   const PORT = process.env.PORT || 8080;
 
   app.use(cookieParser());
