@@ -1,12 +1,11 @@
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-
-// @TODO: Import your reducers
+import shareItemPreviewReducer from './shareItemPreview/reducer';
 
 const middleware = [];
 
 const store = createStore(
-  combineReducers(/* @TODO: Combine your reducers */),
+  combineReducers({ shareItemPreview: shareItemPreviewReducer }),
   composeWithDevTools(applyMiddleware(...middleware))
 );
 

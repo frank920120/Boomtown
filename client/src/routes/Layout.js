@@ -1,18 +1,22 @@
 import React, { Fragment } from 'react';
-import { Redirect, Route, Switch } from 'react-router';
+import { Route, Switch, Redirect } from 'react-router';
+import ItemsContainer from '../pages/Items';
+import Home from '../pages/Home';
+import ShareContainer from '../pages/Share';
+import ProfileContainer from '../pages/Profile';
+import Menu from '../components/Menu';
 
-export default () => (
+export default ({ match }) => (
   <Fragment>
-    {/* @TODO: Add your menu component here */}
+    <Menu />
+
     <Switch>
-      {/**
-       * @TODO: Define routes here for: /items, /profile, /profile/:userid, and /share
-       *
-       * Provide a wildcard redirect to /items for any undefined route using <Redirect />.
-       *
-       * Later, we'll add logic to send users to one set of routes if they're logged in,
-       * or only view the /welcome page if they are not.
-       */}
+      <Route path="/items" component={ItemsContainer} />
+      <Route path="/welcome" component={Home} />
+      <Route path="/share" component={ShareContainer} />
+      <Route path="/profile" component={ProfileContainer} />
+      <Redirect from="/" exact to="/welcome" />
+      <Redirect to="/welcome" />
     </Switch>
   </Fragment>
 );

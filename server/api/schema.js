@@ -11,53 +11,52 @@ const { gql } = require('apollo-server-express');
  * We will create the custom Date scalar together.
  */
 module.exports = gql`
-
   type Item {
-    id : ID!
-    title:String!
-    imageurl:String
-    description:String!
-    itemowner:User!
-    tags:[Tag]
-    created:String
-    borrower:User
+    id: ID!
+    title: String!
+    imageurl: String
+    description: String!
+    itemowner: User!
+    tags: [Tag]
+    created: String
+    borrower: User
   }
 
   type User {
-    id:ID!
-    email:String!
-    fullname:String!
-    bio:String
-    items:[Item]
-    borrowed:[Item]
+    id: ID!
+    email: String!
+    fullname: String!
+    bio: String
+    items: [Item]
+    borrowed: [Item]
   }
 
   type Tag {
-    id:ID!,
-    title:String!
+    id: ID!
+    title: String!
   }
 
   type File {
-    id:ID!,
-    filename:String!
-    minetype:String!
-    encoding:String!
-    itemid:ID!
+    id: ID!
+    filename: String!
+    minetype: String!
+    encoding: String!
+    itemid: ID!
   }
 
   input AssignedTag {
-    id:ID!
-    title:String
+    id: ID!
+    title: String
   }
 
   input AssignedBorrower {
-    id:ID
+    id: ID
   }
 
   input NewItemInput {
-    title:String
-    description :String
-    tags:[AssignedTag]
+    title: String
+    description: String
+    tags: [AssignedTag]
   }
 
   type Query {
@@ -67,7 +66,21 @@ module.exports = gql`
     tags: [Tag]
   }
 
+  input SignupInput {
+    fullname: String!
+    email: String!
+    password: String!
+  }
+
+  input LoginInput {
+    email: String!
+    password: String!
+  }
+
   type Mutation {
-    addItem:Boolean
+    login(user: LoginInput!): User!
+    logout: Boolean!
+    signup(user: SignupInput!): User!
+    addItem(item: NewItemInput!): Item
   }
 `;

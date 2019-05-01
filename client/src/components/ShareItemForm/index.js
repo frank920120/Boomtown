@@ -1,3 +1,3 @@
-import ShareItemForm from './ShareItemForm';
+import ShareForm from './ShareItemForm';
 
-export default ShareItemForm;
+export default ShareForm;

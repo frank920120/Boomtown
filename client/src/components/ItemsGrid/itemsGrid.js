@@ -9,10 +9,14 @@ const ItemsGrid = ({ items, classes }) => {
       className={classes.root}
       container
       direction="row"
-      justify="space-evenly"
-      spacing={40}
+      justify="center"
+      spacing={24}
     >
-      {items.map(item => <ItemCard key={item.id} item={item} />)}
+      <Grid item xs={12}>
+        <Grid container justify="center">
+          {items.map(item => <ItemCard key={item.id} item={item} />)}
+        </Grid>
+      </Grid>
     </Grid>
   );
 };
