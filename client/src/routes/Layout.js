@@ -7,7 +7,7 @@ import ProfileContainer from '../pages/Profile';
 import Menu from '../components/Menu';
 import { ViewerContext } from '../context/ViewerProvider';
 // import FullScreenLoader from '../components/FullScreenLoader';
-// import PRoute from '../components/PrivateRoute';
+import PrivateRoute from '../components/PrivateRoute';
 
 export default () => (
   <ViewerContext.Consumer>
@@ -25,13 +25,13 @@ export default () => (
         <React.Fragment>
           <Menu />
           <Switch>
-            <Route
+            <PrivateRoute
               exact
               path="/items"
               name="items"
               component={ItemsContainer}
             />
-            <Route
+            <PrivateRoute
               exact
               path="/profile"
               name="profile"
@@ -43,7 +43,7 @@ export default () => (
               name="profile"
               component={ProfileContainer}
             /> */}
-            <Route
+            <PrivateRoute
               exact
               path="/share"
               name="share"
