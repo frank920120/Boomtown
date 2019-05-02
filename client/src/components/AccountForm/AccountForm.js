@@ -6,19 +6,7 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
-/**
- * @TODO: Uncomment the following lines when authentication is added to the form
- *
- * import { Form, Field } from 'react-final-form'
- *
- * import {
- *    LOGIN_MUTATION,
- *    SIGNUP_MUTATION,
- *    VIEWER_QUERY
- * } from '../../apollo/queries';
- * import { graphql, compose } from 'react-apollo';
- * import validate from './helpers/validation'
- */
+
 import { graphql, compose } from 'react-apollo';
 import validate from './helpers/validation';
 import { Form, Field } from 'react-final-form';
