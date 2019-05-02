@@ -100,8 +100,7 @@ class ShareForm extends Component {
           <Form
             onSubmit={values => {
               let newtags = selectedTags.map(s => tags[parseInt(s) - 1]);
-              console.log(newtags);
-              // console.log(tagsConvert);
+
               // const newtags = tagsConvert.map(t => {
               //   delete t.__typename;
               // });

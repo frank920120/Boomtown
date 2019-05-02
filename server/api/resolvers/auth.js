@@ -51,9 +51,10 @@ module.exports = app => {
         const user = await context.pgResource.getUserAndPasswordForVerification(
           args.user.email
         );
+        if (!user) throw 'User was not found ';
         const valid = await bcrypt.compare(password, user.password);
 
-        if (!valid || !user) throw 'User was not found.';
+        if (!valid || !user) throw 'User /Password combination was not found.';
         const encodedToken = generateToken(user, app.get('JWT_SECRET'));
         setCookie({
           tokenName: app.get('JWT_COOKIE_NAME'),

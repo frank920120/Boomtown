@@ -5,18 +5,54 @@ import Home from '../pages/Home';
 import ShareContainer from '../pages/Share';
 import ProfileContainer from '../pages/Profile';
 import Menu from '../components/Menu';
+import { ViewerContext } from '../context/ViewerProvider';
+// import FullScreenLoader from '../components/FullScreenLoader';
+// import PRoute from '../components/PrivateRoute';
 
-export default ({ match }) => (
-  <Fragment>
-    <Menu />
-
-    <Switch>
-      <Route path="/items" component={ItemsContainer} />
-      <Route path="/welcome" component={Home} />
-      <Route path="/share" component={ShareContainer} />
-      <Route path="/profile" component={ProfileContainer} />
-      <Redirect from="/" exact to="/welcome" />
-      <Redirect to="/welcome" />
-    </Switch>
-  </Fragment>
+export default () => (
+  <ViewerContext.Consumer>
+    {({ loading, viewer }) => {
+      if (loading) return 'Loading....';
+      if (!viewer) {
+        return (
+          <Switch>
+            <Route exact path="/welcome" name="home" component={Home} />
+            <Redirect from="*" to="/welcome" />
+          </Switch>
+        );
+      }
+      return (
+        <React.Fragment>
+          <Menu />
+          <Switch>
+            <Route
+              exact
+              path="/items"
+              name="items"
+              component={ItemsContainer}
+            />
+            <Route
+              exact
+              path="/profile"
+              name="profile"
+              component={ProfileContainer}
+            />
+            {/* <Route
+              exact
+              path="/profile/:userId"
+              name="profile"
+              component={ProfileContainer}
+            /> */}
+            <Route
+              exact
+              path="/share"
+              name="share"
+              component={ShareContainer}
+            />
+            <Redirect from="*" to="/items" />
+          </Switch>
+        </React.Fragment>
+      );
+    }}
+  </ViewerContext.Consumer>
 );
