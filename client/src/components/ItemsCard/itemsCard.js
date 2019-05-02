@@ -20,7 +20,11 @@ const ItemsCard = ({ item, classes }) => {
       <CardMedia
         component="img"
         alt="img"
-        image={item.imageurl}
+        image={
+          item.imageurl === ''
+            ? 'https://dummyimage.com/400x200/999999/fff'
+            : item.imageurl
+        }
         title="Contemplative Reptile"
       />
       <CardContent className={classes.profileItem}>

@@ -99,7 +99,12 @@ class ShareForm extends Component {
         {(addItem, { data }) => (
           <Form
             onSubmit={values => {
-              const newtags = selectedTags.map(s => tags[parseInt(s) - 1]);
+              let newtags = selectedTags.map(s => tags[parseInt(s) - 1]);
+              console.log(newtags);
+              // console.log(tagsConvert);
+              // const newtags = tagsConvert.map(t => {
+              //   delete t.__typename;
+              // });
 
               addItem({ variables: { item: { ...values, tags: newtags } } });
             }}
