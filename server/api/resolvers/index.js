@@ -41,7 +41,7 @@ module.exports = app => {
           throw new ApolloError(e);
         }
       },
-      async items(parent, { filter }, { pgResource }, info) {
+      async items(parent, { filter }, { pgResource, token }, info) {
         try {
           const item = await pgResource.getItems(filter);
           return item;
@@ -115,27 +115,25 @@ module.exports = app => {
       ...authMutations(app),
 
       async addItem(parent, args, context, info) {
-        /**
-         *  @TODO: Destructuring
-         *
-         *  The 'args' and 'context' parameters of this resolver can be destructured
-         *  to make things more readable and avoid duplication.
-         *
-         *  When you're finished with this resolver, destructure all necessary
-         *  parameters in all of your resolver functions.
-         *
-         *  Again, you may look at the user resolver for an example of what
-         *  destructuring should look like.
-         */
+        const user = context.token.id;
+        try {
+          const addItemTags = await context.pgResource.saveNewItem({
+            item: args.item,
+            user
+          });
+          return addItemTags;
+        } catch (e) {
+          throw new ApolloError(e);
+        }
 
-        image = await image;
-        const user = await jwt.decode(context.token, app.get('JWT_SECRET'));
-        const newItem = await context.pgResource.saveNewItem({
-          item: args.item,
-          image: args.image,
-          user
-        });
-        return newItem;
+        // image = await image;
+        // const user = await jwt.decode(context.token, app.get('JWT_SECRET'));
+        // const newItem = await context.pgResource.saveNewItem({
+        //   item: args.item,
+        //   image: args.image,
+        //   user
+        // });
+        // return newItem;
       }
     }
   };

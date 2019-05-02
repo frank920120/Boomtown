@@ -74,12 +74,18 @@ export const ALL_TAGS_QUERY = gql`
   }
 `;
 
-// export const ADD_ITEM_MUTATION = gql`
-//   mutation addItem($item: NewItemInput!) {
-//     # @TODO: Pass the item and image into the addItem mutation as arguments
-//     # and return the new item id when the mutation is complete.
-//   }
-// `;
+export const ADD_ITEM_MUTATION = gql`
+  mutation addItem($item: NewItemInput!) {
+    addItem(item: $item) {
+      title
+      description
+      tags {
+        id
+        title
+      }
+    }
+  }
+`;
 
 // /**
 //  * Auth-related queries and mutations.

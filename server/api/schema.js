@@ -11,7 +11,8 @@ const { gql } = require('apollo-server-express');
  * We will create the custom Date scalar together.
  */
 module.exports = gql`
-  type Item {
+  directive @auth on OBJECT | FIELD_DEFINITION
+  type Item @auth {
     id: ID!
     title: String!
     imageurl: String
@@ -22,7 +23,7 @@ module.exports = gql`
     borrower: User
   }
 
-  type User {
+  type User @auth {
     id: ID!
     email: String!
     fullname: String!
@@ -31,7 +32,7 @@ module.exports = gql`
     borrowed: [Item]
   }
 
-  type Tag {
+  type Tag @auth {
     id: ID!
     title: String!
   }
