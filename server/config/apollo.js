@@ -15,7 +15,6 @@ module.exports = ({ app, pgResource }) => {
       auth: AuthDirective
     }
   });
-  // -------------------------------
 
   const apolloServer = new ApolloServer({
     context: ({ req }) => {

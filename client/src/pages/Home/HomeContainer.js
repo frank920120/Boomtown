@@ -3,17 +3,8 @@ import Home from './Home';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import { Query } from 'react-apollo';
-// import { ALL_TAGS_QUERY } from '../../apollo/queries';
-import gql from 'graphql-tag';
+import { ALL_TAGS_QUERY } from '../../apollo/queries';
 
-const ALL_TAGS_QUERY = gql`
-  query {
-    tags {
-      id
-      title
-    }
-  }
-`;
 class HomeContainer extends Component {
   render() {
     return (

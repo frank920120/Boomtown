@@ -64,7 +64,6 @@ class LongMenu extends React.Component {
               <MenuItem
                 key={'LogOut'}
                 onClick={() => {
-                  // this.handleClose;
                   logoutMutataion();
                 }}
               >

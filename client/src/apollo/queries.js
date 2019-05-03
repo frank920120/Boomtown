@@ -25,14 +25,6 @@ const ItemFields = gql`
     }
   }
 `;
-// export const ITEM_QUERY = gql`
-//   query item($id: ID!) {
-//     item(id: $id) {
-//       ...ItemFields
-//     }
-//   }
-//   ${ItemFields}
-// `;
 
 export const ALL_ITEMS_QUERY = gql`
   query items($filter: ID!) {

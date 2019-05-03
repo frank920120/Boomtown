@@ -17,7 +17,7 @@ import {
 import { connect } from 'react-redux';
 import { Mutation } from 'react-apollo';
 import { ADD_ITEM_MUTATION } from '../../apollo/queries';
-
+import validate from './helpers/validation';
 class ShareForm extends Component {
   constructor(props) {
     super(props);
@@ -98,6 +98,7 @@ class ShareForm extends Component {
       <Mutation mutation={ADD_ITEM_MUTATION}>
         {(addItem, { data }) => (
           <Form
+            validate={validate.bind(this)}
             onSubmit={values => {
               const newtags = this.applyTags(tags);
               addItem({ variables: { item: { ...values, tags: newtags } } });
@@ -208,6 +209,7 @@ class ShareForm extends Component {
                     type="submit"
                     className={classes.share}
                     variant="contained"
+                    disabled={pristine || invalid}
                   >
                     Share
                   </Button>

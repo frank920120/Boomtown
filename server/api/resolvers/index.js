@@ -1,14 +1,12 @@
 const { ApolloError } = require('apollo-server-express');
-
+const { DateScalar } = require('../custom-types');
 // @TODO: Uncomment these lines later when we add auth
 // const jwt = require("jsonwebtoken")
 const authMutations = require('./auth');
-// -------------------------------
-const { DateScalar } = require('../custom-types');
 
 module.exports = app => {
   return {
-    // Date: DateScalar,
+    Date: DateScalar,
 
     Query: {
       viewer(parent, args, context, info) {

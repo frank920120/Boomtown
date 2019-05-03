@@ -29,12 +29,15 @@ const styles = {
     padding: 0,
     paddingTop: 10,
     paddingBottom: 10
-    // whiteSpace: 'nowrap'
   },
 
   button: {
     position: 'absolute',
     bottom: 10
+  },
+  image: {
+    width: 400,
+    height: 200
   }
 };
 

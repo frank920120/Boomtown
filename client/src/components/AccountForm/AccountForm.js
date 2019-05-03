@@ -6,7 +6,6 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
-
 import { graphql, compose } from 'react-apollo';
 import validate from './helpers/validation';
 import { Form, Field } from 'react-final-form';
@@ -115,7 +114,6 @@ class AccountForm extends Component {
                     className={classes.formToggle}
                     type="button"
                     onClick={() => {
-                      // @TODO: Reset the form on submit
                       this.setState({
                         formToggle: !this.state.formToggle
                       });

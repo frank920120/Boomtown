@@ -32,6 +32,8 @@ const styles = theme => ({
   },
   navRight: {
     display: 'flex'
+    // justifyContent: 'space-between',
+    // width: 300
   }
 });
 
