@@ -11,7 +11,7 @@ import logo from '../../images/boomtown.svg';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
-
+import LongMenu from '../LongMenu/LongMenu';
 function Menu(props) {
   const { classes } = props;
   const currentPath = window.location.pathname;
@@ -28,7 +28,7 @@ function Menu(props) {
               title="boomtown logo"
             />
           </Link>
-          <div>
+          <div className={classes.navRight}>
             {currentPath !== '/share' ? (
               <Link to="/share">
                 <Button
@@ -44,9 +44,7 @@ function Menu(props) {
             ) : (
               ''
             )}
-            <IconButton>
-              <MoreVertIcon />
-            </IconButton>
+            <LongMenu />
           </div>
         </Toolbar>
       </AppBar>

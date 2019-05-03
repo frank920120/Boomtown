@@ -21,6 +21,7 @@ const styles = theme => ({
   },
   toolbar: {
     display: 'flex',
+
     justifyContent: 'space-between'
   },
   icon: {
@@ -28,6 +29,9 @@ const styles = theme => ({
   },
   iconHover: {
     margin: theme.spacing.unit * 2
+  },
+  navRight: {
+    display: 'flex'
   }
 });
 
