@@ -8,7 +8,7 @@ import styles from './style';
 import { withStyles } from '@material-ui/core/styles';
 import Gravatar from 'react-gravatar';
 import moment from 'moment';
-import PropTypes from 'prop-types';
+
 const ItemsCard = ({ item, classes }) => {
   let formatDate = moment(item.created).format('YYYY-MM-DD');
 

@@ -22,7 +22,7 @@ export default () => (
         );
       }
       return (
-        <React.Fragment>
+        <Fragment>
           <Menu />
           <Switch>
             <PrivateRoute
@@ -37,12 +37,12 @@ export default () => (
               name="profile"
               component={ProfileContainer}
             />
-            {/* <Route
+            <PrivateRoute
               exact
               path="/profile/:userId"
               name="profile"
               component={ProfileContainer}
-            /> */}
+            />
             <PrivateRoute
               exact
               path="/share"
@@ -51,7 +51,7 @@ export default () => (
             />
             <Redirect from="*" to="/items" />
           </Switch>
-        </React.Fragment>
+        </Fragment>
       );
     }}
   </ViewerContext.Consumer>

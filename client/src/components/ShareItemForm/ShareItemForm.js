@@ -28,7 +28,7 @@ class ShareForm extends Component {
     };
     this.fileInput = React.createRef();
   }
-
+  saveItems = () => {};
   handleSelectTag = event => {
     this.setState({
       selectedTags: event.target.value
@@ -99,13 +99,12 @@ class ShareForm extends Component {
         {(addItem, { data }) => (
           <Form
             onSubmit={values => {
-              let newtags = selectedTags.map(s => tags[parseInt(s) - 1]);
-
-              // const newtags = tagsConvert.map(t => {
-              //   delete t.__typename;
-              // });
-
+              const newtags = this.applyTags(tags);
               addItem({ variables: { item: { ...values, tags: newtags } } });
+
+              this.setState({
+                done: true
+              });
             }}
             render={({ handleSubmit, pristine, invalid, form }) => {
               return (

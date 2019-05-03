@@ -1,9 +1,5 @@
 import gql from 'graphql-tag';
 
-/**
- * Item and user-related queries and mutations.
- */
-
 const ItemFields = gql`
   fragment ItemFields on Item {
     id
@@ -49,17 +45,18 @@ export const ALL_ITEMS_QUERY = gql`
 
 export const ALL_USER_ITEMS_QUERY = gql`
   query user($id: ID!) {
-    use(id: $id) {
+    user(id: $id) {
       id
       fullname
       bio
-      emails
-    }
-    items {
-      ...ItemFields
-    }
-    borrowed {
-      ...ItemFields
+      email
+
+      items {
+        ...ItemFields
+      }
+      borrowed {
+        ...ItemFields
+      }
     }
   }
   ${ItemFields}
@@ -86,10 +83,6 @@ export const ADD_ITEM_MUTATION = gql`
     }
   }
 `;
-
-/**
- * Auth-related queries and mutations.
- */
 
 export const VIEWER_QUERY = gql`
   query {
