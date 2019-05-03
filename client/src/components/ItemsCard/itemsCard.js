@@ -10,9 +10,9 @@ import Gravatar from 'react-gravatar';
 import moment from 'moment';
 
 const ItemsCard = ({ item, classes }) => {
-  let formatDate = moment(item.created).format('YYYY-MM-DD');
+  let formatDate = moment(item.created).fromNow();
 
-  const DateAgo = moment(formatDate, 'YYYY-MM-DD').fromNow();
+  // const DateAgo = moment(formatDate, 'YYYY-MM-DD').fromNow();
   const tagsFormat = item.tags.map(t => t.title).join(',');
 
   return (
@@ -35,7 +35,7 @@ const ItemsCard = ({ item, classes }) => {
         />
         <CardContent>
           <Typography component="p">{item.itemowner.fullname}</Typography>
-          <Typography variant="caption">{DateAgo}</Typography>
+          <Typography variant="caption">{formatDate}</Typography>
         </CardContent>
       </CardContent>
       <CardContent className={classes.itemInfo}>

@@ -9,8 +9,8 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import { Link } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
-import { LOGOUT_MUTATION } from '../../apollo/queries';
-
+import { LOGOUT_MUTATION, VIEWER_QUERY } from '../../apollo/queries';
+import { graphql, compose } from 'react-apollo';
 const ITEM_HEIGHT = 20;
 
 class LongMenu extends React.Component {
@@ -27,7 +27,7 @@ class LongMenu extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, logoutMutataion } = this.props;
     const { anchorEl } = this.state;
     const open = Boolean(anchorEl);
 
@@ -56,17 +56,40 @@ class LongMenu extends React.Component {
         >
           <Link to="/profile" className={classes.link}>
             <MenuItem key={'Profile'} onClick={this.handleClose}>
-              <i class="fas fa-address-card" /> Your Profile
+              <i className="fas fa-address-card" /> Your Profile
             </MenuItem>
           </Link>
-
-          <MenuItem key={'LogOut'} onClick={this.handleClose}>
-            <i class="fas fa-sign-out-alt" /> Sign Out
-          </MenuItem>
+          <Mutation mutation={LOGOUT_MUTATION}>
+            {(logout, { data }) => (
+              <MenuItem
+                key={'LogOut'}
+                onClick={() => {
+                  // this.handleClose;
+                  logoutMutataion();
+                }}
+              >
+                <i className="fas fa-sign-out-alt" /> Sign Out
+              </MenuItem>
+            )}
+          </Mutation>
         </Menu>
       </div>
     );
   }
 }
+const refetchQueries = [
+  {
+    query: VIEWER_QUERY
+  }
+];
 
-export default withStyles(styles)(LongMenu);
+export default compose(
+  graphql(LOGOUT_MUTATION, {
+    options: {
+      refetchQueries
+    },
+    name: 'logoutMutataion'
+  }),
+
+  withStyles(styles)
+)(LongMenu);

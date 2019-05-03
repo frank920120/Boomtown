@@ -27,7 +27,7 @@ const Profile = ({ classes, user }) => {
                 {user.fullname}
               </Typography>
             </div>
-            <Typography variant="h2" component="h2" gutterBottom>
+            <Typography variant="headline" component="h3" gutterBottom>
               {user.items.length} Items shared {user.borrowed.length} Items
               borrowed
             </Typography>
