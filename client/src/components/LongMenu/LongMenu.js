@@ -8,6 +8,8 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import { Link } from 'react-router-dom';
+import { Mutation } from 'react-apollo';
+import { LOGOUT_MUTATION } from '../../apollo/queries';
 
 const ITEM_HEIGHT = 20;
 
@@ -53,19 +55,12 @@ class LongMenu extends React.Component {
           }}
         >
           <Link to="/profile" className={classes.link}>
-            <MenuItem
-              key={'Profile'}
-              // selected={'Profile' === 'Profile'}
-              onClick={this.handleClose}
-            >
+            <MenuItem key={'Profile'} onClick={this.handleClose}>
               <i class="fas fa-address-card" /> Your Profile
             </MenuItem>
           </Link>
-          <MenuItem
-            key={'LogOut'}
-            // selected={'LogOut' === 'LogOut'}
-            onClick={this.handleClose}
-          >
+
+          <MenuItem key={'LogOut'} onClick={this.handleClose}>
             <i class="fas fa-sign-out-alt" /> Sign Out
           </MenuItem>
         </Menu>

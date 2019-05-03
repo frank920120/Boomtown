@@ -10,8 +10,13 @@ class ProfileContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUserId: this.props.match.params.userId
+      currentUserId: null
     };
+  }
+  componentDidMount() {
+    this.setState({
+      currentUserId: this.props.match.params.userId
+    });
   }
   render() {
     return !this.state.currentUserId ? (
