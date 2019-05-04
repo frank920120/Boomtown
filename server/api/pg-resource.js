@@ -1,10 +1,4 @@
 function tagsQueryString(tags, itemid, result) {
-  /**
-   * Challenge:
-   * This function is more than a little complicated.
-   *  - Can you refactor it to be simpler / more readable?
-   *  - Is this
-   */
   const length = tags.length;
   return length === 0
     ? `${result};`
@@ -21,7 +15,7 @@ module.exports = postgres => {
     async createUser({ fullname, email, password }) {
       const newUserInsert = {
         text:
-          'INSERT INTO users (fullname,email,password) VALUES ($1,$2,$3) RETURNING *', // @TODO: Authentication - Server
+          'INSERT INTO users (fullname,email,password) VALUES ($1,$2,$3) RETURNING *', //
         values: [fullname, email, password]
       };
       try {
@@ -64,19 +58,6 @@ module.exports = postgres => {
       } catch (e) {
         throw 'user not found';
       }
-
-      /**
-       *  Refactor the following code using the error handling logic described above.
-       *  When you're done here, ensure all of the resource methods in this file
-       *  include a try catch, and throw appropriate errors.
-       *
-       *  Here is an example throw statement: throw 'User was not found.'
-       *  Customize your throw statements so the message can be used by the client.
-       */
-
-      const user = await postgres.query(findUserQuery);
-      return user;
-      // -------------------------------
     },
     async getItems(idToOmit) {
       const items = await postgres.query({
@@ -142,25 +123,23 @@ module.exports = postgres => {
 
               const addtags = await client.query(addTagsQuery);
 
-              // Commit the entire transaction!
               client.query('COMMIT', err => {
                 if (err) {
                   throw err;
                 }
-                // release the client back to the pool
+
                 done();
-                // Uncomment this resolve statement when you're ready!
+
                 resolve(additem.rows[0]);
                 // -------------------------------
               });
             });
           } catch (e) {
-            // Something went wrong
             client.query('ROLLBACK', err => {
               if (err) {
                 throw err;
               }
-              // release the client back to the pool
+
               done();
             });
             switch (true) {

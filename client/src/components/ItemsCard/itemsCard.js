@@ -15,9 +15,7 @@ const ItemsCard = ({ item, viewer, classes }) => {
   const tagsFormat = item.tags.map(t => t.title).join(',');
 
   return (
-    <Link
-      to={!viewer ? `/profile/${item.itemowner.id}` : `/profile/${viewer.id}`}
-    >
+    <Link to={!viewer ? `/profile/${item.itemowner.id}` : `/profile`}>
       <Card className={classes.card}>
         <CardMedia
           className={classes.image}

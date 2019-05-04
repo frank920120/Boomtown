@@ -7,7 +7,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
-import { Link } from 'react-router-dom';
 import { Mutation } from 'react-apollo';
 import { LOGOUT_MUTATION, VIEWER_QUERY } from '../../apollo/queries';
 import { graphql, compose } from 'react-apollo';
@@ -54,11 +53,11 @@ class LongMenu extends React.Component {
             }
           }}
         >
-          <Link to="/profile" className={classes.link}>
+          <a href="/profile" className={classes.link}>
             <MenuItem key={'Profile'} onClick={this.handleClose}>
               <i className="fas fa-address-card" /> Your Profile
             </MenuItem>
-          </Link>
+          </a>
           <Mutation mutation={LOGOUT_MUTATION}>
             {(logout, { data }) => (
               <MenuItem
