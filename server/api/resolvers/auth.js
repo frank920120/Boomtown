@@ -5,7 +5,7 @@ function setCookie({ tokenName, token, res }) {
   res.cookie(tokenName, token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production',
-    maxAge: 1000 * 60 * 60 * 2 // 2h
+    maxAge: 1000 * 60 * 60 * 2
   });
 }
 
@@ -19,7 +19,6 @@ module.exports = app => {
     async signup(parent, args, context) {
       try {
         const hashedPassword = await bcrypt.hash(args.user.password, 10);
-        // -------------------------------
 
         const user = await context.pgResource.createUser({
           fullname: args.user.fullname,
