@@ -11,7 +11,9 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 
 const ItemsCard = ({ item, viewer, classes }) => {
-  let formatDate = moment(item.created).fromNow();
+  const date = item.created.toString().substring(4, 24);
+  const formatDate = moment(date, 'MMM DD YYYY HH:mm:ss').fromNow();
+
   const tagsFormat = item.tags.map(t => t.title).join(',');
 
   return (

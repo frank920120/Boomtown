@@ -6,7 +6,6 @@ import Gravatar from 'react-gravatar';
 import { Typography } from '@material-ui/core';
 import ItemsGrid from '../../components/ItemsGrid';
 const Profile = ({ classes, user }) => {
-  console.log(user);
   return (
     <div>
       <Grid container className={classes.root}>
