@@ -19,15 +19,13 @@ Styling: Material-UI
 
 ```
 
-###Personal Learnings
+### Personal Learnings
 
-```bash
-I have been working on this project in Red Academy for almost a month, it is definitely the most challenge app I have ever created,  but in the meanwhile, I also learned lots of new web technologies from this project.
-`Why use GraphQL instead of REST API?`
+I have been working on this project in Red Academy for almost a month, it is definitely the most challenge app I have ever created, but in the meanwhile, I also learned lots of new web technologies from this project.
+Why use GraphQL instead of REST API?
 GraphQL offers many benefits over REST APIs. One of the main benefits is clients have the ability to dictate exactly what they need from the server and receive that data in a predictable way, GraphQL also prevents over-fetching.
-`Why use Redux?`
+Why use Redux?
 I would say that it is not necessary to use Redux for all the React Apps. But when you have reasonable amounts of data changing over time, you will need it. Redux maintains the state of an entire application in a single immutable state tree (object), which can't be changed directly.
-```
 
 ### Installation
 
