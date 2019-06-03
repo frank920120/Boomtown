@@ -10,7 +10,7 @@ import logo from '../../images/boomtown.svg';
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
 import LongMenu from '../LongMenu/LongMenu';
-import PropTypes from 'prop-types';
+
 function Menu(props) {
   const { classes } = props;
   const currentPath = window.location.pathname;
