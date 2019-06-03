@@ -20,6 +20,7 @@ import { ADD_ITEM_MUTATION, ALL_ITEMS_QUERY } from '../../apollo/queries';
 import validate from './helpers/validation';
 import { ViewerContext } from '../../context/ViewerProvider';
 import { withRouter } from 'react-router';
+import PropTypes from 'prop-types';
 class ShareForm extends Component {
   constructor(props) {
     super(props);
@@ -109,7 +110,7 @@ class ShareForm extends Component {
           return (
             <Mutation
               refetchQueries={() => [
-                { query: ALL_ITEMS_QUERY, variables: { id: viewer.id } }
+                { query: ALL_ITEMS_QUERY, variables: { filter: viewer.id } }
               ]}
               mutation={ADD_ITEM_MUTATION}
             >
@@ -117,7 +118,6 @@ class ShareForm extends Component {
                 <Form
                   validate={validate.bind(this)}
                   onSubmit={values => {
-                    console.log(values);
                     this.saveItem(values, tags, addItem);
                     this.props.history.push('/items');
                   }}
@@ -247,6 +247,11 @@ class ShareForm extends Component {
     );
   }
 }
+ShareForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+  tags: PropTypes.array.isRequired,
+  updateItem: PropTypes.func.isRequired
+};
 const mapDispatchToProps = dispatch => ({
   updateItem(item) {
     dispatch(updateItem(item));

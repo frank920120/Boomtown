@@ -10,6 +10,7 @@ import { graphql, compose } from 'react-apollo';
 import validate from './helpers/validation';
 import { Form, Field } from 'react-final-form';
 import styles from './styles';
+import PropTypes from 'prop-types';
 import {
   LOGIN_MUTATION,
   SIGNUP_MUTATION,
@@ -145,6 +146,11 @@ const refetchQueries = [
     query: VIEWER_QUERY
   }
 ];
+AccountForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+  loginMutation: PropTypes.func.isRequired,
+  signupMutation: PropTypes.func.isRequired
+};
 
 export default compose(
   graphql(SIGNUP_MUTATION, {

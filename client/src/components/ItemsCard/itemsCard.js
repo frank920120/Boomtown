@@ -9,7 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Gravatar from 'react-gravatar';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
-
+import PropTypes from 'prop-types';
 const ItemsCard = ({ item, viewer, classes }) => {
   const date = item.created.toString().substring(4, 24);
   const formatDate = moment(date, 'MMM DD YYYY HH:mm:ss').fromNow();
@@ -75,5 +75,10 @@ ItemsCard.defaultProps = {
     },
     tags: []
   }
+};
+ItemsCard.propTypes = {
+  classes: PropTypes.object.isRequired,
+  viewer: PropTypes.object,
+  item: PropTypes.object.isRequired
 };
 export default withStyles(styles)(ItemsCard);

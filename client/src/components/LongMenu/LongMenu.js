@@ -10,6 +10,7 @@ import styles from './styles';
 import { Mutation } from 'react-apollo';
 import { LOGOUT_MUTATION, VIEWER_QUERY } from '../../apollo/queries';
 import { graphql, compose } from 'react-apollo';
+import PropTypes from 'prop-types';
 const ITEM_HEIGHT = 20;
 
 class LongMenu extends React.Component {
@@ -80,7 +81,10 @@ const refetchQueries = [
     query: VIEWER_QUERY
   }
 ];
-
+LongMenu.propTypes = {
+  classes: PropTypes.object.isRequired,
+  logoutMutataion: PropTypes.func.isRequired
+};
 export default compose(
   graphql(LOGOUT_MUTATION, {
     options: {
