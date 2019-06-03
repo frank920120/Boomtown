@@ -2,21 +2,21 @@
 
 ![Screen Shot 2019-05-04 at 5 17 14 PM](https://user-images.githubusercontent.com/30378034/57186245-7e034400-6e90-11e9-88e8-f5cc74b0bd99.png)
 ![Screen Shot 2019-05-04 at 5 06 51 PM](https://user-images.githubusercontent.com/30378034/57186183-329c6600-6e8f-11e9-9d9a-b5d28d896503.png)
-![Screen Shot 2019-05-04 at 5 07 22 PM](https://user-images.githubusercontent.com/30378034/57186181-3203cf80-6e8f-11e9-85d7-636364cf3f02.png)
-![Screen Shot 2019-05-04 at 5 06 59 PM](https://user-images.githubusercontent.com/30378034/57186182-329c6600-6e8f-11e9-9f47-0f89d99c031b.png)
 
 ## Description
 
-Boomtown is a React-Redux application to support a local sharing System, allows users to browse all items and user profiles .
+Boomtown is a Full Stack application to support a local sharing System, allows users to browse all items and user profiles .
 
 ### Technologies used
 
 ```bash
-
-Server: nodejs  expressjs Apollo GraphQL Postgres
-Client: React  Redux  Apollo React+Router
-Styling: Material-UI
-
+- NodeJs
+- Expressjs
+- GraphQL
+- Postgres
+- React
+- Redux
+- Material-UI
 ```
 
 ### Personal Learnings
@@ -30,13 +30,13 @@ I would say that it is not necessary to use Redux for all the React Apps. But wh
 ### Installation
 
 ```bash
-npm install
+npm install in both client and server directory
 ```
 
 ### Run Server from inside the `server` directory
 
 ```bash
-npm run start:dev
+npm run start:dev in the server folder
 ```
 
 ### While in the development environment, to start the project from inside `client` directory
@@ -44,3 +44,8 @@ npm run start:dev
 ```bash
 npm start
 ```
+
+### Author
+
+**JUN FANG** Full-Stack Developer
+**LinkedIn:** [Frank JUN FANG](https://www.linkedin.com/in/jun-fang-945397167/)
