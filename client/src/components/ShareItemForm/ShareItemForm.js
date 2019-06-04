@@ -250,7 +250,9 @@ class ShareForm extends Component {
 ShareForm.propTypes = {
   classes: PropTypes.object.isRequired,
   tags: PropTypes.array.isRequired,
-  updateItem: PropTypes.func.isRequired
+  updateItem: PropTypes.func.isRequired,
+  resetImage: PropTypes.func.isRequired,
+  resetItem: PropTypes.func.isRequired
 };
 const mapDispatchToProps = dispatch => ({
   updateItem(item) {

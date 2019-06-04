@@ -4,35 +4,30 @@ import { withStyles } from '@material-ui/core/styles';
 import styles from './styles';
 import FullScreenLoader from '../../components/Fullscreenloader';
 import { Query } from 'react-apollo';
-import { ALL_ITEMS_QUERY, VIEWER_QUERY } from '../../apollo/queries';
-
+import { ALL_ITEMS_QUERY } from '../../apollo/queries';
+import { ViewerContext } from '../../context/ViewerProvider';
 class ItemsContainer extends Component {
   render() {
     return (
-      <Query query={VIEWER_QUERY}>
-        {({ loading, error, data }) => {
+      <ViewerContext.Consumer>
+        {({ loading, viewer }) => {
           if (loading) return <FullScreenLoader />;
-          if (error) return `Error! ${error.message}`;
-          if (data) {
-            return (
-              <Query
-                query={ALL_ITEMS_QUERY}
-                variables={{ filter: data.viewer.id }}
-              >
-                {({ loading, error, data }) => {
-                  if (loading) return <FullScreenLoader />;
-                  if (error) return `Error! ${error.message}`;
-                  if (data) {
-                    return (
-                      <Items items={data.items} classes={this.props.classes} />
-                    );
-                  }
-                }}
-              </Query>
-            );
-          }
+
+          return (
+            <Query query={ALL_ITEMS_QUERY} variables={{ filter: viewer.id }}>
+              {({ loading, error, data }) => {
+                if (loading) return <FullScreenLoader />;
+                if (error) return `Error! ${error.message}`;
+                if (data) {
+                  return (
+                    <Items items={data.items} classes={this.props.classes} />
+                  );
+                }
+              }}
+            </Query>
+          );
         }}
-      </Query>
+      </ViewerContext.Consumer>
     );
   }
 }
