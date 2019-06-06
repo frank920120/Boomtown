@@ -48,4 +48,4 @@ npm start
 ### Author
 
 **JUN FANG** Full-Stack Developer
-**LinkedIn:** [Frank JUN FANG](https://www.linkedin.com/in/jun-fang-945397167/)
+**LinkedIn:** [JUN FANG](https://www.linkedin.com/in/jun-fang-945397167/)
