@@ -33,7 +33,7 @@
     "stringstream": "0.0.6"
   },
   "devDependencies": {
-    "jest-cli": "^23.6.0",
+    "jest-cli": "^29.3.1",
     "nodemon": "^1.17.5",
     "prettier": "1.13.7"
   },
